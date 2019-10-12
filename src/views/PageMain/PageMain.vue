@@ -30,6 +30,7 @@
             <base-fieldset
               :has-legend="true"
               :legend-name="'Номер карты'"
+              class="page__form-fieldset page__form-fieldset--number"
             >
               <base-input
                 :value="card1"
@@ -59,6 +60,7 @@
             <base-fieldset
               :has-legend="true"
               :legend-name="'Срок действия'"
+              class="page__form-fieldset page__form-fieldset--date"
             >
               <base-select
                 v-model="form.month"
@@ -71,9 +73,33 @@
                 :options="yearsArray"
               />
             </base-fieldset>
+            <base-fieldset
+              :has-legend="false"
+              class="page__form-fieldset page__form-fieldset--user"
+            >
+              <base-input
+                :value="form.user"
+                type="text"
+                placeholder="Держатель карты"
+                required
+                class="page__form-input page__form-input--user"
+              />
+            </base-fieldset>
           </div>
           <div class="page__form-block page__form-block--back">
             <div class="page__form-bar" />
+            <base-fieldset
+              :has-legend="true"
+              :legend-name="'Код CVV2 / CVC2'"
+              class="page__form-fieldset"
+            >
+              <base-input
+                :value="form.user"
+                type="text"
+                required
+                class="page__form-input page__form-input--ccv"
+              />
+            </base-fieldset>
           </div>
         </div>
         <button
@@ -116,6 +142,7 @@ export default {
       form: {
         month: '01',
         year: '2019',
+        user: '',
       },
       card1: '1',
       card2: '2',
@@ -177,7 +204,7 @@ export default {
     &__form-block {
       position: relative;
       width: 350px;
-      height: 236px;
+      height: 248px;
       padding: 25px 15px 14px 15px;
       border: 1px solid #e4e9ee;
       background-color: $bg-white;
@@ -189,20 +216,39 @@ export default {
         right: 0;
         top: 20px;
         z-index: 1;
+        .base-fieldset__legend {
+          margin-left: auto;
+          margin-right: 8px;
+        }
+        .base-fieldset__inner {
+          display: flex;
+          justify-content: flex-end;
+        }
+        .page__form-input--ccv {
+          background: url("../../assets/images/question.png") no-repeat center
+            right 8px;
+          width: 138px;
+          padding-right: 40px;
+        }
       }
     }
-    // &__form-fieldset {
-    //   border: none;
-    // }
-    // &__form-legend {
-    //   margin-bottom: 5px;
-    // }
     &__form-input {
       &--number {
-        width: 65px;
+        width: 70px;
         &:not(:last-of-type) {
           margin-right: 9px;
         }
+      }
+      &--user {
+        width: 100%;
+      }
+    }
+    &__form-fieldset {
+      &--number {
+        margin-bottom: 17px;
+      }
+      &--date {
+        margin-bottom: 12px;
       }
     }
     &__form-bar {
@@ -224,7 +270,8 @@ export default {
         rgba(37, 36, 35, 0.18) 0%,
         rgba(37, 36, 35, 0) 100%
       );
-      margin-top: 20px;
+      margin-top: 40px;
+      margin-left: 15px;
       &:hover {
         cursor: pointer;
       }

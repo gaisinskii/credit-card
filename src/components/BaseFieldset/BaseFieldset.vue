@@ -21,7 +21,7 @@ export default {
     },
     legendName: {
       type: String,
-      required: true,
+      default: '',
     },
   },
 };

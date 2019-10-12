@@ -49,5 +49,12 @@ export default {
 
 <style lang="scss">
 .base-select {
+  height: 42px;
+  border: 1px solid #e4e9ee;
+  padding: 0 37px 0 15px;
+  appearance: none;
+  background-color: #fff;
+  background: url("../../assets/images/arrow.png") #fff no-repeat center right
+    8px;
 }
 </style>
