@@ -16,6 +16,7 @@ export default {
 
 <style lang="scss">
 .page--profile {
+  background-color: yellow;
   .page {
   }
 }

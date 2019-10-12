@@ -18,7 +18,14 @@
         </ul>
       </nav>
     </aside>
-    <router-view />
+    <div class="layout__main">
+      <transition
+        name="fade"
+        mode="out-in"
+      >
+        <router-view />
+      </transition>
+    </div>
   </base-layout>
 </template>
 
@@ -65,6 +72,9 @@ export default {
   padding-top: 79px;
   background-color: $bg-blue;
   .layout {
+    &__main {
+      width: 639px;
+    }
     &__list {
       list-style: none;
     }
@@ -93,6 +103,14 @@ export default {
         cursor: pointer;
       }
     }
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 }
 </style>

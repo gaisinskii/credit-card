@@ -18,6 +18,7 @@ export default {
 
 <style lang="scss">
 .page--main {
+  background-color: red;
   .page {
   }
 }
