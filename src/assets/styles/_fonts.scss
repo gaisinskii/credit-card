@@ -5,3 +5,10 @@
   font-weight: bold;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Open Sans';
+  src: local('OpenSans Bold'), local('OpenSans-Bold'),
+    url('../../assets/fonts/OpenSans-Bold.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+}

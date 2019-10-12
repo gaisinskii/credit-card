@@ -1,25 +1,239 @@
 <template>
   <base-page name="main">
-    <h1 class="hehe">
-      header is here main page
-    </h1>
+    <section class="page__section page__section--white">
+      <header class="page__header">
+        <h1 class="page__header-heading">
+          Информация по оплате:
+        </h1>
+        <div class="page__header-block">
+          <h3>
+            Номер счета:
+          </h3>
+          <h3>
+            Сумма платежа:
+          </h3>
+        </div>
+        <div class="page__header-block">
+          <span class="page__header-data">87123658716587</span>
+          <span class="page__header-data">100 руб.</span>
+        </div>
+      </header>
+      <form
+        class="page__form"
+        @submit.prevent="submitForm"
+      >
+        <h2 class="page__form-heading">
+          Данные банковской карты
+        </h2>
+        <div class="page__form-block-wrapper">
+          <div class="page__form-block page__form-block--front">
+            <base-fieldset
+              :has-legend="true"
+              :legend-name="'Номер карты'"
+            >
+              <base-input
+                :value="card1"
+                type="text"
+                required
+                class="page__form-input page__form-input--number"
+              />
+              <base-input
+                :value="card2"
+                type="text"
+                required
+                class="page__form-input page__form-input--number"
+              />
+              <base-input
+                :value="card3"
+                type="text"
+                required
+                class="page__form-input page__form-input--number"
+              />
+              <base-input
+                :value="card4"
+                type="text"
+                required
+                class="page__form-input page__form-input--number"
+              />
+            </base-fieldset>
+            <base-fieldset
+              :has-legend="true"
+              :legend-name="'Срок действия'"
+            >
+              <base-select
+                v-model="form.month"
+                :default-selected-value="form.month"
+                :options="monthsArray"
+              />
+              <base-select
+                v-model="form.year"
+                :default-selected-value="form.year"
+                :options="yearsArray"
+              />
+            </base-fieldset>
+          </div>
+          <div class="page__form-block page__form-block--back">
+            <div class="page__form-bar" />
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="page__form-btn"
+        >
+          Оплатить
+        </button>
+      </form>
+    </section>
+    <section class="page__section page__section--grey">
+      <p class="page__paragraph">
+        Исходя из астатической системы координат Булгакова, соединение стабильно. Краевая часть артезианского бассейна, которая в настоящее время находится ниже уровня моря, ослабляет систематический уход. Лисичка традиционно трансформирует прецессионный годовой параллакс. <br> <br>
+        Выклинивание абсолютно аккумулирует твердый pадиотелескоп Максвелла. <br> <br>
+        Алмаз слагает горст. Делювий длительно колеблет лазерный подвижный объект. <br> <br>
+        Устойчивость, например, параллельна. Аргумент перигелия определяет боксит. Проекция вертикально дает уходящий диабаз. Если пренебречь малыми величинами, то видно, что угол крена покрывает вибрирующий волчок, что обусловлено не только первичными неровностями эрозионно-тектонического рельефа поверхности кристаллических пород, но и проявлениями долее поздней блоковой тектоники. Засветка неба заставляет иначе взглянуть на то, что такое волчок.
+      </p>
+    </section>
   </base-page>
 </template>
 
 <script>
 import BasePage from '@/components/BasePage/BasePage.vue';
+import BaseInput from '@/components/BaseInput/BaseInput.vue';
+import BaseFieldset from '@/components/BaseFieldset/BaseFieldset.vue';
+import BaseSelect from '@/components/BaseSelect/BaseSelect.vue';
+
+import yearsArray from '@/utils/years.json';
+import monthsArray from '@/utils/months.json';
 
 export default {
   components: {
     BasePage,
+    BaseInput,
+    BaseFieldset,
+    BaseSelect,
   },
+  data() {
+    return {
+      form: {
+        month: '01',
+        year: '2019',
+      },
+      card1: '1',
+      card2: '2',
+      card3: '3',
+      card4: '4',
+      yearsArray,
+      monthsArray,
+    };
+  },
+  methods: {
+    submitForm() {
+      console.log('form submit');
+    },
+  },
+
 };
 </script>
 
 <style lang="scss">
 .page--main {
-  background-color: red;
   .page {
+    &__section--white {
+      padding: 47px 46px 45px 29px;
+      background-color: $bg-white;
+      color: #8494ab;
+    }
+    &__section--grey {
+      padding: 26px 45px 33px 29px;
+      background-color: $bg-grey;
+    }
+    &__header {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+    &__header-heading {
+      flex-basis: 100%;
+      margin-bottom: 23px;
+    }
+    &__header-block {
+      display: flex;
+      flex-direction: column;
+    }
+    &__header-data {
+      color: #373c43;
+      margin-left: 41px;
+    }
+    &__form-heading {
+      font-family: "Open Sans", serif;
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 25.45px;
+      color: #383d43;
+      margin-bottom: 22px;
+    }
+    &__form-block-wrapper {
+      position: relative;
+    }
+    &__form-block {
+      position: relative;
+      width: 350px;
+      height: 236px;
+      padding: 25px 15px 14px 15px;
+      border: 1px solid #e4e9ee;
+      background-color: $bg-white;
+      border-radius: 10px;
+      z-index: 2;
+      &--back {
+        position: absolute;
+        width: 370px;
+        right: 0;
+        top: 20px;
+        z-index: 1;
+      }
+    }
+    // &__form-fieldset {
+    //   border: none;
+    // }
+    // &__form-legend {
+    //   margin-bottom: 5px;
+    // }
+    &__form-input {
+      &--number {
+        width: 65px;
+        &:not(:last-of-type) {
+          margin-right: 9px;
+        }
+      }
+    }
+    &__form-bar {
+      height: 42px;
+      margin: 0 -15px 19px -15px;
+      background-color: #e4e9ee;
+    }
+    &__form-btn {
+      padding: 9px 32px;
+      font-family: "Open Sans", serif;
+      font-weight: bold;
+      font-size: 14px;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      background-color: #005abf;
+      background-image: linear-gradient(
+        to top,
+        rgba(37, 36, 35, 0.18) 0%,
+        rgba(37, 36, 35, 0) 100%
+      );
+      margin-top: 20px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &__paragraph {
+      color: #7f8591;
+      font-size: 12px;
+      line-height: 18px;
+    }
   }
 }
 </style>
