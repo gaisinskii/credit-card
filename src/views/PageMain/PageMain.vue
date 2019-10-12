@@ -14,8 +14,8 @@
           </h3>
         </div>
         <div class="page__header-block">
-          <span class="page__header-data">87123658716587</span>
-          <span class="page__header-data">100 руб.</span>
+          <span class="page__header-data"> {{ randomCheck }}</span>
+          <span class="page__header-data">{{ randomSum }} руб.</span>
         </div>
       </header>
       <form
@@ -151,6 +151,14 @@ export default {
       yearsArray,
       monthsArray,
     };
+  },
+  computed: {
+    randomCheck() {
+      return Math.floor((Math.random() * 1000000000000) + 1);
+    },
+    randomSum() {
+      return Math.floor((Math.random() * 1000) + 1);
+    },
   },
   methods: {
     submitForm() {
