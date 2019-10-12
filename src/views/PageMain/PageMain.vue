@@ -225,10 +225,10 @@ export default {
           justify-content: flex-end;
         }
         .page__form-input--ccv {
-          background: url("../../assets/images/question.png") no-repeat center
-            right 8px;
+          background: url("../../assets/images/question.png") #fff no-repeat
+            center right 8px;
           width: 138px;
-          padding-right: 40px;
+          padding-right: 37px;
         }
       }
     }
