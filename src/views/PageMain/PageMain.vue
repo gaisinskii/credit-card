@@ -55,21 +55,21 @@
                 class="page__form-input page__form-input--number"
               />
               <base-input
-                :value="card2"
+                v-model="card2"
                 type="text"
                 required
                 maxlength="4"
                 class="page__form-input page__form-input--number"
               />
               <base-input
-                :value="card3"
+                v-model="card3"
                 type="text"
                 required
                 maxlength="4"
                 class="page__form-input page__form-input--number"
               />
               <base-input
-                :value="card4"
+                v-model="card4"
                 type="text"
                 required
                 maxlength="4"
