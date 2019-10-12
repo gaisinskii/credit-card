@@ -3,7 +3,8 @@
     v-bind="$attrs"
     :value="value"
     class="base-input"
-    v-on="$listeners"
+    v-on="listeners"
+    @input="$emit('input', $event.target.value)"
   >
 </template>
 
@@ -11,6 +12,20 @@
 export default {
   inheritAttrs: false,
   props: ['value'],
+  computed: {
+    listeners() {
+      return {
+        ...this.$listeners,
+        input: this.updateValue,
+      };
+    },
+  },
+  methods: {
+    updateValue(evt) {
+      const { value } = evt.target;
+      this.$emit('input', value);
+    },
+  },
 };
 </script>
 

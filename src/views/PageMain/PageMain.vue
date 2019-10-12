@@ -35,7 +35,7 @@
       <form
         id="form"
         class="page__form"
-        @submit.prevent="submitForm"
+        @submit.prevent="validateForm"
       >
         <h2 class="page__form-heading">
           Данные банковской карты
@@ -48,27 +48,31 @@
               class="page__form-fieldset page__form-fieldset--number"
             >
               <base-input
-                :value="card1"
+                v-model="card1"
                 type="text"
                 required
+                maxlength="4"
                 class="page__form-input page__form-input--number"
               />
               <base-input
                 :value="card2"
                 type="text"
                 required
+                maxlength="4"
                 class="page__form-input page__form-input--number"
               />
               <base-input
                 :value="card3"
                 type="text"
                 required
+                maxlength="4"
                 class="page__form-input page__form-input--number"
               />
               <base-input
                 :value="card4"
                 type="text"
                 required
+                maxlength="4"
                 class="page__form-input page__form-input--number"
               />
             </base-fieldset>
@@ -159,10 +163,11 @@ export default {
         year: '2019',
         user: '',
       },
-      card1: '1',
-      card2: '2',
-      card3: '3',
-      card4: '4',
+      formIsValid: true,
+      card1: '',
+      card2: '',
+      card3: '',
+      card4: '',
       yearsArray,
       monthsArray,
     };
@@ -170,8 +175,14 @@ export default {
   computed: {
   },
   methods: {
-    submitForm() {
-      console.log('form submit');
+    validateForm() {
+      if (!this.validateCardNumberAmount(this.card1)) {
+        console.log('alert');
+      }
+    },
+    validateCardNumberAmount(number) {
+      const regex = /^\d{4}$/;
+      return regex.test(number);
     },
   },
 
