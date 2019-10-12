@@ -14,11 +14,26 @@
           </h3>
         </div>
         <div class="page__header-block">
-          <span class="page__header-data"> {{ randomCheck }}</span>
-          <span class="page__header-data">{{ randomSum }} руб.</span>
+          <input
+            form="form"
+            type="text"
+            class="page__header-data"
+            placeholder="87123658716587"
+            required
+          >
+          <input
+            form="form"
+            type="text"
+            class="page__header-data"
+            placeholder="100 руб."
+            required
+          >
+          <!-- <span class="page__header-data"> {{ randomCheck }}</span>
+          <span class="page__header-data">{{ randomSum }} руб.</span> -->
         </div>
       </header>
       <form
+        id="form"
         class="page__form"
         @submit.prevent="submitForm"
       >
@@ -153,12 +168,6 @@ export default {
     };
   },
   computed: {
-    randomCheck() {
-      return Math.floor((Math.random() * 1000000000000) + 1);
-    },
-    randomSum() {
-      return Math.floor((Math.random() * 1000) + 1);
-    },
   },
   methods: {
     submitForm() {
@@ -197,6 +206,8 @@ export default {
     &__header-data {
       color: #373c43;
       margin-left: 41px;
+      background: transparent;
+      border: none;
     }
     &__form-heading {
       font-family: "Open Sans", serif;
