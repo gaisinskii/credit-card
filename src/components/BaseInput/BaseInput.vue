@@ -4,7 +4,6 @@
     :value="value"
     class="base-input"
     v-on="listeners"
-    @input="$emit('input', $event.target.value)"
   >
 </template>
 
