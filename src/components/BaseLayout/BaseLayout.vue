@@ -20,7 +20,6 @@ export default {
 
 <style lang="scss">
 .base-layout {
-  height: 100vh;
-  width: 100vw;
+  min-height: 100%;
 }
 </style>

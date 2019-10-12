@@ -36,7 +36,7 @@ export default {
   components: {
     BaseLayout,
   },
-  data() {
+  data () {
     return {
       nav: [
         {
@@ -69,7 +69,7 @@ export default {
 .layout--main {
   display: flex;
   justify-content: center;
-  padding-top: 79px;
+  padding: 80px 0;
   background-color: $bg-blue;
   .layout {
     &__main {
