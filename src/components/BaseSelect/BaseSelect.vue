@@ -56,5 +56,10 @@ export default {
   background-color: #fff;
   background: url("../../assets/images/arrow.png") #fff no-repeat center right
     8px;
+  &::-ms-expand {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+  }
 }
 </style>

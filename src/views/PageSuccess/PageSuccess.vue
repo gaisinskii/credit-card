@@ -49,7 +49,9 @@ export default {
 
 <style lang="scss">
 .page--success {
+  display: flex;
   height: 100%;
+  flex-direction: column;
   background-color: $bg-white;
   padding: 80px 30px;
   .page {
