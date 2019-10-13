@@ -7,7 +7,24 @@
       Платежи отсутствуют
     </h2>
     <div v-else>
-      {{ history }}
+      <div
+        v-for="(item, index) in history"
+        :key="index"
+        class="page__item"
+      >
+        <div class="page__item-inner">
+          <span class="page__item-heading">Номер счета:</span>
+          {{ item.card }}
+        </div>
+        <div class="page__item-inner">
+          <span class="page__item-heading">Цена:</span>
+          {{ item.sum }}
+        </div>
+        <div class="page__item-inner">
+          <span class="page__item-heading">Дата перевода:</span>
+          {{ item.timestamp }}
+        </div>
+      </div>
     </div>
   </base-page>
 </template>
@@ -40,6 +57,14 @@ export default {
       text-align: center;
       font-size: 24px;
       margin-bottom: 20px;
+    }
+    &__item {
+      &:not(:last-of-type) {
+        margin-bottom: 20px;
+      }
+    }
+    &__item-heading {
+      font-weight: bold;
     }
   }
 }
