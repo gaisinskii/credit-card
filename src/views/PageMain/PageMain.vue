@@ -146,7 +146,7 @@
 <script>
 import { validationMixin } from 'vuelidate';
 import {
-  required, minLength, maxLength, integer, alpha,
+  required, minLength, maxLength, integer, helpers,
 } from 'vuelidate/lib/validators';
 
 import BasePage from '@/components/BasePage/BasePage.vue';
@@ -156,6 +156,8 @@ import BaseSelect from '@/components/BaseSelect/BaseSelect.vue';
 
 import yearsArray from '@/utils/years.json';
 import monthsArray from '@/utils/months.json';
+
+const alpha = helpers.regex('alpha', /^[a-zA-Z\s]*$/);
 
 
 export default {
@@ -209,6 +211,7 @@ export default {
       } else {
         this.createTimeStamp();
         this.updateCard();
+        this.$store.commit('ADD_TO_HISTORY', this.form);
         console.log('some sumbit endpoint call');
         console.log(this.form);
         this.$router.push({ name: 'PageSuccess', params: { id: this.form.invoice }, query: { form: this.form } });
