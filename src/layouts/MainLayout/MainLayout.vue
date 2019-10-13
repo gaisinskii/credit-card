@@ -36,11 +36,11 @@ export default {
   components: {
     BaseLayout,
   },
-  data () {
+  data() {
     return {
       nav: [
         {
-          to: 'PageProfile',
+          to: 'PageDummy1',
           name: 'Личный кабинет',
         },
         {
@@ -48,7 +48,7 @@ export default {
           name: 'Платежи',
         },
         {
-          to: 'PageDummy1',
+          to: 'PageHistory',
           name: 'История платежей',
         },
         {

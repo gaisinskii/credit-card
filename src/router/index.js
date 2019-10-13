@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import MainLayout from '@/layouts/MainLayout/MainLayout.vue';
 import PageMain from '@/views/PageMain/PageMain.vue';
 import PageSuccess from '@/views/PageSuccess/PageSuccess.vue';
+import PageHistory from '@/views/PageHistory/PageHistory.vue';
 
 Vue.use(Router);
 
@@ -20,6 +21,11 @@ export default new Router({
           component: PageMain,
         },
         {
+          path: '/history',
+          name: 'PageHistory',
+          component: PageHistory,
+        },
+        {
           path: '/main/success/:id',
           name: 'PageSuccess',
           component: PageSuccess,
@@ -31,11 +37,6 @@ export default new Router({
 
             next();
           },
-        },
-        {
-          path: '/profile',
-          name: 'PageProfile',
-          component: () => import(/* webpackChunkName: "profile" */ '@/views/PageProfile/PageProfile.vue'),
         },
       ],
     },
