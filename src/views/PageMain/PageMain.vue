@@ -15,21 +15,21 @@
         </div>
         <div class="page__header-block">
           <input
+            v-model="form.invoice"
             form="form"
             type="text"
             class="page__header-data"
-            placeholder="87123658716587"
+            placeholder="Введите номер счета"
             required
           >
           <input
+            v-model="form.sum"
             form="form"
             type="text"
             class="page__header-data"
-            placeholder="100 руб."
+            placeholder="Введите сумму"
             required
           >
-          <!-- <span class="page__header-data"> {{ randomCheck }}</span>
-          <span class="page__header-data">{{ randomSum }} руб.</span> -->
         </div>
       </header>
       <form
@@ -97,7 +97,7 @@
               class="page__form-fieldset page__form-fieldset--user"
             >
               <base-input
-                :value="form.user"
+                v-model="form.user"
                 type="text"
                 placeholder="Держатель карты"
                 required
@@ -113,7 +113,7 @@
               class="page__form-fieldset"
             >
               <base-input
-                :value="form.user"
+                v-model="form.ccv"
                 type="text"
                 required
                 class="page__form-input page__form-input--ccv"
@@ -159,9 +159,12 @@ export default {
   data() {
     return {
       form: {
+        invoice: '',
+        sum: '',
         month: '01',
         year: '2019',
         user: '',
+        ccv: '',
       },
       formIsValid: true,
       card1: '',
