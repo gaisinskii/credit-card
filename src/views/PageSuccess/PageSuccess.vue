@@ -34,12 +34,12 @@ export default {
   components: {
     BasePage,
   },
-  data () {
+  data() {
     return {
       form: {},
     };
   },
-  created () {
+  created() {
     if (this.$route.query.form) {
       this.form = this.$route.query.form;
     }
