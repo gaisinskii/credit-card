@@ -20,7 +20,7 @@
             type="text"
             class="page__header-data"
             placeholder="Введите номер счета"
-            required
+            :class="{ 'page__header-data--invalid': $v.form.invoice.$error }"
           >
           <input
             v-model="form.sum"
@@ -28,13 +28,14 @@
             type="text"
             class="page__header-data"
             placeholder="Введите сумму"
-            required
+            :class="{ 'page__header-data--invalid': $v.form.sum.$error }"
           >
         </div>
       </header>
       <form
         id="form"
         class="page__form"
+        novalidate
         @submit.prevent="validateForm"
       >
         <h2 class="page__form-heading">
@@ -53,27 +54,28 @@
                 required
                 maxlength="4"
                 class="page__form-input page__form-input--number"
+                :class="{ 'page__form-input--invalid': $v.card1.$error }"
               />
               <base-input
                 v-model="card2"
                 type="text"
-                required
                 maxlength="4"
                 class="page__form-input page__form-input--number"
+                :class="{ 'page__form-input--invalid': $v.card2.$error }"
               />
               <base-input
                 v-model="card3"
                 type="text"
-                required
                 maxlength="4"
                 class="page__form-input page__form-input--number"
+                :class="{ 'page__form-input--invalid': $v.card3.$error }"
               />
               <base-input
                 v-model="card4"
                 type="text"
-                required
                 maxlength="4"
                 class="page__form-input page__form-input--number"
+                :class="{ 'page__form-input--invalid': $v.card4.$error }"
               />
             </base-fieldset>
             <base-fieldset
@@ -100,8 +102,8 @@
                 v-model="form.user"
                 type="text"
                 placeholder="Держатель карты"
-                required
                 class="page__form-input page__form-input--user"
+                :class="{ 'page__form-input--invalid': $v.form.user.$error }"
               />
             </base-fieldset>
           </div>
@@ -115,8 +117,9 @@
               <base-input
                 v-model="form.ccv"
                 type="text"
-                required
+                maxlength="3"
                 class="page__form-input page__form-input--ccv"
+                :class="{ 'page__form-input--invalid': $v.form.ccv.$error }"
               />
             </base-fieldset>
           </div>
@@ -141,6 +144,11 @@
 </template>
 
 <script>
+import { validationMixin } from 'vuelidate';
+import {
+  required, minLength, maxLength, integer, alpha,
+} from 'vuelidate/lib/validators';
+
 import BasePage from '@/components/BasePage/BasePage.vue';
 import BaseInput from '@/components/BaseInput/BaseInput.vue';
 import BaseFieldset from '@/components/BaseFieldset/BaseFieldset.vue';
@@ -149,6 +157,7 @@ import BaseSelect from '@/components/BaseSelect/BaseSelect.vue';
 import yearsArray from '@/utils/years.json';
 import monthsArray from '@/utils/months.json';
 
+
 export default {
   components: {
     BasePage,
@@ -156,6 +165,7 @@ export default {
     BaseFieldset,
     BaseSelect,
   },
+  mixins: [validationMixin],
   data() {
     return {
       form: {
@@ -179,13 +189,59 @@ export default {
   },
   methods: {
     validateForm() {
-      if (!this.validateCardNumberAmount(this.card1)) {
-        console.log('alert');
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        console.log('error');
+      } else {
+        console.log('some sumbit endpoint call');
       }
     },
-    validateCardNumberAmount(number) {
-      const regex = /^\d{4}$/;
-      return regex.test(number);
+  },
+
+  validations: {
+    form: {
+      invoice: {
+        required,
+        integer,
+      },
+      sum: {
+        required,
+      },
+      user: {
+        required,
+        alpha,
+        minLength: minLength(4),
+      },
+      ccv: {
+        required,
+        integer,
+        minLength: minLength(3),
+        maxLength: maxLength(3),
+      },
+    },
+    card1: {
+      required,
+      integer,
+      minLength: minLength(4),
+      maxLength: maxLength(4),
+    },
+    card2: {
+      required,
+      integer,
+      minLength: minLength(4),
+      maxLength: maxLength(4),
+    },
+    card3: {
+      required,
+      integer,
+      minLength: minLength(4),
+      maxLength: maxLength(4),
+    },
+    card4: {
+      required,
+      integer,
+      minLength: minLength(4),
+      maxLength: maxLength(4),
     },
   },
 
@@ -222,6 +278,12 @@ export default {
       margin-left: 41px;
       background: transparent;
       border: none;
+      &--invalid {
+        color: #d8000c;
+        &::placeholder {
+          color: #d8000c;
+        }
+      }
     }
     &__form-heading {
       font-family: "Open Sans", serif;
@@ -274,6 +336,9 @@ export default {
       }
       &--user {
         width: 100%;
+      }
+      &--invalid {
+        border-color: #d8000c;
       }
     }
     &__form-fieldset {
