@@ -81,7 +81,7 @@ export default {
     &__list-item {
       width: 318px;
       &:not(:last-of-type) {
-        border-bottom: 1px solid #2a2d37;
+        border-bottom: 1px solid $border-sub;
       }
     }
     &__route {
@@ -96,7 +96,7 @@ export default {
       text-decoration: none;
       &.router-link-exact-active {
         color: #808592;
-        background-color: #2a2d37;
+        background-color: $border-sub;
       }
       &:hover {
         background-color: #1f2229;

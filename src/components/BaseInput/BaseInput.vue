@@ -31,7 +31,7 @@ export default {
 <style lang="scss">
 .base-input {
   height: 42px;
-  border: 1px solid #e4e9ee;
+  border: 1px solid $border;
   padding: 0 15px;
   &::placeholder {
     color: #bec6cf;

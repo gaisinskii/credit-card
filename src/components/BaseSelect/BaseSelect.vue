@@ -50,7 +50,7 @@ export default {
 <style lang="scss">
 .base-select {
   height: 42px;
-  border: 1px solid #e4e9ee;
+  border: 1px solid $border;
   padding: 0 37px 0 15px;
   appearance: none;
   background-color: #fff;
