@@ -171,12 +171,13 @@ export default {
       form: {
         invoice: '',
         sum: '',
+        card: '',
         month: '01',
         year: '2019',
         user: '',
         ccv: '',
+        timestamp: '',
       },
-      formIsValid: true,
       card1: '',
       card2: '',
       card3: '',
@@ -186,14 +187,31 @@ export default {
     };
   },
   computed: {
+    computedCardData() {
+      return `${this.card1} ${this.card2} ${this.card3} ${this.card4}`;
+    },
   },
   methods: {
+    createTimeStamp() {
+      const timestamp = new Date();
+      const date = `${timestamp.getDate()}/${timestamp.getMonth() + 1}/${timestamp.getFullYear()}`;
+      const time = `${timestamp.getHours()}:${timestamp.getMinutes()}:${timestamp.getSeconds()}`;
+      const result = `${date} ${time}`;
+      this.form.timestamp = result;
+    },
+    updateCard() {
+      this.form.card = this.computedCardData;
+    },
     validateForm() {
       this.$v.$touch();
       if (this.$v.$invalid) {
         console.log('error');
       } else {
+        this.createTimeStamp();
+        this.updateCard();
         console.log('some sumbit endpoint call');
+        console.log(this.form);
+        this.$router.push({ name: 'PageSuccess', params: { id: this.form.invoice }, query: { form: this.form } });
       }
     },
   },
